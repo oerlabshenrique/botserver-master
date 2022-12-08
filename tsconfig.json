@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "downlevelIteration": true,
+    "baseUrl": "./",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "mapRoot": "./dist/",
+    "moduleResolution": "Node",
+    "module": "ESNext",
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "paths": {
+      "*": [
+        "types/*"
+      ],
+      "botlib/*": [
+        "node_modules/botlib/*"
+      ],
+      "pragmatismo-io-framework/*": [
+        "node_modules/pragmatismo-io-framework/*"
+      ]
+    },
+    "sourceMap": true,
+    "target": "ESNext",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [    
+    "test/**/*",
+    "src/**/*",
+    "packages/*.gbapp/**/*",
+    "packages/*.gblib/**/*",
+    "packages/*.gbtheme/**/*",
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "name": "botserver",
+  "version": "3.0.0",
+  "type": "module",
+  "description": "General Bot Community Edition open-core server.",
+  "main": "./boot.mjs",
+  "bugs": "https://github.com/pragmatismo-io/BotServer/issues",
+  "homepage": "https://github.com/pragmatismo-io/BotServer/#readme",
+  "contributors": [
+    "Rodrigo Rodriguez <me@rodrigorodriguez.com>",
+    "João Ferreira <joao.parana@gmail.com>",
+    "Jorge Ramos <jramos@pobox.com>",
+    "PH <ph.an@outlook.com>",
+    "Dário Vieira <dario.junior3@gmail.com>"
+  ],
+  "engines": {
+    "node": "=19.2.0"
+  },
+  "license": "AGPL-3.0",
+  "preferGlobal": true,
+  "private": false,
+  "bin": {
+    "gbot": "./boot.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GeneralBots/BotServer.git"
+  },
+  "scripts": {
+    "clean": "shx rm -rf node_modules/ dist/ docs/reference",
+    "tslint": "tslint --fix ./src/*.ts ./packages/**/*.ts -t verbose -e ./packages/default.gbui/**/* -e ./packages/**/*.gbdialog/**/*",
+    "build": "npm install && npm run build-server && npm run build-gbui",
+    "build-server": "tsc",
+    "build-gbui": "cd packages/default.gbui && echo SKIP_PREFLIGHT_CHECK=true >.env &&  npm install && npm run build",
+    "build-docs": "typedoc --options typedoc.json src/",
+    "test": "node test.js",
+    "start": "node ./boot.cjs",
+    "reverse-proxy": "node_modules/.bin/ngrok http 4242",
+    "watch:build": "tsc --watch",
+    "posttypedoc": "shx cp .nojekyll docs/reference/.nojekyll",
+    "ban": "ban",
+    "issues": "git-issues",
+    "license": "license-checker --production --onlyunknown --csv",
+    "pretty": "prettier-standard 'src/*.ts' 'packages/**/*.ts'",
+    "secure": "nsp check",
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
+    "unused-deps": "dependency-check --unused --no-dev ./package.json",
+    "travis-deploy-once": "travis-deploy-once --pro",
+    "semantic-release": "semantic-release",
+    "commit": "git-cz"
+  },
+  "dependencies": {
+    "@azure/arm-appservice": "^13.0.3",
+    "@azure/arm-cognitiveservices": "^7.3.1",
+    "@azure/arm-resources": "^5.1.0",
+    "@azure/arm-search": "^3.0.1",
+    "@azure/arm-sql": "^9.0.1",
+    "@azure/arm-subscriptions": "^5.1.0",
+    "@azure/cognitiveservices-computervision": "8.2.0",
+    "@azure/keyvault-keys": "4.6.0",
+    "@azure/ms-rest-js": "2.6.2",
+    "@azure/msal-node": "1.14.3",
+    "@azure/search-documents": "^11.3.1",
+    "@google-cloud/pubsub": "3.2.1",
+    "@google-cloud/translate": "7.0.4",
+    "@hubspot/api-client": "7.1.2",
+    "@microsoft/microsoft-graph-client": "3.0.4",
+    "@nosferatu500/textract": "3.1.2",
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/exec": "6.0.3",
+    "@semantic-release/git": "10.0.1",
+    "@sendgrid/mail": "7.7.0",
+    "@types/node": "18.11.9",
+    "@types/validator": "13.7.10",
+    "adm-zip": "0.5.9",
+    "alasql": "2.1.6",
+    "any-shell-escape": "0.1.1",
+    "async-promises": "0.2.3",
+    "basic-auth": "2.0.1",
+    "billboard.js": "3.6.3",
+    "bluebird": "3.7.2",
+    "body-parser": "1.20.1",
+    "botbuilder": "4.18.0",
+    "botbuilder-adapter-facebook": "1.0.12",
+    "botbuilder-ai": "4.18.0",
+    "botbuilder-dialogs": "4.18.0",
+    "botframework-connector": "4.18.0",
+    "botlib": "3.0.0",
+    "c3-chart-maker": "0.2.8",
+    "chrome-remote-interface": "0.31.3",
+    "cli-progress": "3.11.2",
+    "cli-spinner": "0.2.10",
+    "core-js": "3.26.1",
+    "data-forge": "1.9.6",
+    "date-diff": "1.0.2",
+    "docxtemplater": "3.32.4",
+    "dotenv-extended": "2.9.0",
+    "exceljs": "4.3.0",
+    "express": "4.18.2",
+    "express-remove-route": "1.0.0",
+    "ffmpeg-static": "5.1.0",
+    "google-libphonenumber": "3.2.31",
+    "googleapis": "109.0.1",
+    "ibm-watson": "7.1.2",
+    "indent.js": "0.3.5",
+    "js-beautify": "1.14.7",
+    "keyv": "4.5.2",
+    "koa": "2.13.4",
+    "koa-body": "6.0.1",
+    "koa-router": "12.0.0",
+    "lodash": "4.17.21",
+    "luxon": "3.1.0",
+    "mammoth": "1.5.1",
+    "marked": "4.2.2",
+    "moment": "1.3.0",
+    "ms-rest-azure": "3.0.2",
+    "nexmo": "2.9.1",
+    "node-cron": "3.0.2",
+    "node-nlp": "^4.24.0",
+    "node-tesseract-ocr": "2.2.1",
+    "npm": "9.1.2",
+    "open": "8.4.0",
+    "pdf-extraction": "1.0.2",
+    "pdfkit": "0.13.0",
+    "phone": "3.1.30",
+    "pizzip": "3.1.3",
+    "pptxtemplater": "1.0.5",
+    "pragmatismo-io-framework": "1.0.20",
+    "prism-media": "1.3.4",
+    "public-ip": "6.0.1",
+    "punycode": "2.1.1",
+    "puppeteer": "19.2.2",
+    "puppeteer-extra": "3.3.4",
+    "puppeteer-extra-plugin-stealth": "2.11.1",
+    "qrcode": "1.5.1",
+    "qrcode-terminal": "0.12.0",
+    "readline": "1.3.0",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "3.0.2",
+    "safe-buffer": "5.2.1",
+    "scanf": "1.1.2",
+    "sequelize": "6.25.7",
+    "sequelize-cli": "6.5.2",
+    "sequelize-typescript": "2.1.5",
+    "simple-git": "3.15.0",
+    "speakingurl": "14.0.1",
+    "ssr-for-bots": "1.0.1-c",
+    "strict-password-generator": "1.1.2",
+    "swagger-client": "^3.18.5",
+    "tabulator-tables": "5.4.2",
+    "tedious": "15.1.2",
+    "textract": "^2.5.0",
+    "twitter-api-v2": "1.12.9",
+    "typescript": "4.9.3",
+    "typescript-rest-rpc": "^1.0.7",
+    "url-join": "5.0.0",
+    "vbscript-to-typescript": "1.0.8",
+    "vhost": "3.0.2",
+    "vm2": "3.9.11",
+    "vm2-process": "2.1.1",
+    "walk-promise": "0.2.0",
+    "washyourmouthoutwithsoap": "1.0.2",
+    "whatsapp-web.js": "1.18.3",
+    "winston": "3.8.2",
+    "winston-logs-display": "^1.0.0",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@types/url-join": "4.0.1",
+    "ban-sensitive-files": "1.9.18",
+    "commitizen": "4.2.5",
+    "cz-conventional-changelog": "3.3.0",
+    "dependency-check": "4.1.0",
+    "git-issues": "^1.0.0",
+    "license-checker": "25.0.1",
+    "ngrok": "4.3.3",
+    "prettier-standard": "^15.0.1",
+    "semantic-release": "19.0.5",
+    "simple-commit-message": "^1.1.0",
+    "travis-deploy-once": "^3.0.0",
+    "ts-node": "10.9.1",
+    "tslint": "6.1.3"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true,
+      "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "rules": {
+      "indent": "off",
+      "linebreak-style": [
+        "warn",
+        "unix"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-undef": [
+        "warn"
+      ],
+      "no-console": [
+        "warn"
+      ],
+      "no-case-declarations": [
+        "warn"
+      ],
+      "no-extra-semi": [
+        "warn"
+      ],
+      "no-unreachable": [
+        "warn"
+      ],
+      "no-redeclare": [
+        "warn"
+      ],
+      "no-useless-escape": [
+        "warn"
+      ],
+      "no-constant-condition": [
+        "warn"
+      ]
+    }
+  },
+  "release": {
+    "tagFormat": "${version}",
+    "debug": true,
+    "verifyConditions": [
+      "@semantic-release/github"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog"
+    ],
+    "prepare": [
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "git status"
+      },
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "CHANGELOG.md"
+        ]
+      }
+    ],
+    "publish": [
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "analyzeCommits": "simple-commit-message"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "pre-git": {
+      "commit-msg": "simple",
+      "pre-commit": [],
+      "pre-push": [],
+      "post-commit": [],
+      "post-checkout": [],
+      "post-merge": []
+    }
+  }
+}
